@@ -7,6 +7,8 @@ import cv2
 import json
 from PIL import Image
 
+img_path = "imgs/offtake_img"
+
 if not osp.exists("offtake_json"):
     os.makedirs("offtake_json")
 
@@ -14,7 +16,7 @@ for csv_file in glob.glob("offtake_csv/*.csv"):
     df = pd.read_csv(csv_file)
     for img_url, values in df.groupby('ImgUrl'):
         img_name = osp.split(img_url)[-1] + ".jpg"
-        img = Image.open(osp.join("img", img_name))
+        img = Image.open(osp.join(img_path, img_name))
         img_w, img_h = img.size
 
         json_data = {

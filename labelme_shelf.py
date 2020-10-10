@@ -7,6 +7,8 @@ import cv2
 import json
 from PIL import Image
 
+img_path = "imgs/shelf_img"
+
 if not osp.exists("shelf_json"):
     os.makedirs("shelf_json")
 
@@ -14,7 +16,7 @@ for csv_file in glob.glob("shelf_csv/*.csv"):
     df = pd.read_csv(csv_file)
     for img_url, values in df.groupby('ImageUrl'):
         img_name = osp.split(img_url)[-1] + ".jpg"
-        img = Image.open(osp.join("img", img_name))
+        img = Image.open(osp.join(img_path, img_name))
         img_w, img_h = img.size
 
         json_data = {
