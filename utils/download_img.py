@@ -15,6 +15,8 @@ def download_img_from_csv_file(csv_file, img_path):
     for url in urls:
         file_name = url.split('/')[-1] + ".jpg"
         file_path = os.path.join(img_path, file_name)
+        if os.path.exists(file_path):
+            continue
         download_from_url(url, file_path)
     print("finish download csv: {}".format(csv_file))
 
