@@ -9,9 +9,9 @@ def download_img_from_csv_folder(csv_folder, img_path):
     for csv_file in glob.glob(file_pattern):
         download_img_from_csv_file(csv_file, img_path)
 
-def download_img_from_csv_file(csv_file, img_path):
+def download_img_from_csv_file(csv_file, img_path, url_key="ImageUrl"):
     df = pd.read_csv(csv_file)
-    urls = df["ImageUrl"].unique()
+    urls = df[url_key].unique()
     for url in urls:
         file_name = url.split('/')[-1] + ".jpg"
         file_path = os.path.join(img_path, file_name)

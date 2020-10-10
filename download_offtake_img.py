@@ -10,4 +10,4 @@ if not osp.exists(target_folder):
 
 for csv_file in glob.glob("offtake_csv/*.csv"):
     print("process : {}".format(csv_file))
-    download_img_from_csv_file(csv_file, target_folder)
+    download_img_from_csv_file(csv_file, target_folder, url_key="ImgUrl")
