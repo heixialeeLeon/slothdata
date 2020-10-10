@@ -133,6 +133,8 @@ venv.bak/
 .dmypy.json
 dmypy.json
 
+.idea/
+
 # Pyre type checker
 .pyre/
 
@@ -141,3 +143,5 @@ dmypy.json
 
 # Cython debug symbols
 cython_debug/
+
+imgs/
