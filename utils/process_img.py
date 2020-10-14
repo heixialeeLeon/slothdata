@@ -138,16 +138,14 @@ def cut_img_and_json(img_path, save_root, mode="tb", json_only=False):
 
 
 class LabelmeToCoco(object):
-    def __init__(self, json_root, save_path):
+    def __init__(self):
         super().__init__()
-        self.json_root = json_root
-        self.save_path = save_path
 
-    def convert(self):
+    def convert(self, json_list, save_path):
         coco_data = {"images": [], "categories": [], "annotations": []}
         coco_data["categories"] = [{"supercategory": "object", "id": 1, "name": "object"}] # Only use single category
         ann_id = 0
-        for img_id, json_path in enumerate(glob.glob(osp.join(self.json_root, "*.json"))):
+        for img_id, json_path in enumerate(json_list):
             sample = json.load(open(json_path))
             coco_data["images"].append({
                 "id": img_id, "file_name": sample["imagePath"], "height": sample["imageHeight"], "width": sample["imageWidth"]
@@ -182,5 +180,5 @@ class LabelmeToCoco(object):
                     return obj.tolist()
                 else:
                     return super(MyEncoder, self).default(obj)
-        with open(self.save_path, "w") as f:
+        with open(save_path, "w") as f:
             json.dump(coco_data, f, cls=MyEncoder)
