@@ -161,7 +161,7 @@ class LabelmeToCoco(object):
                 wh = pts_max - pts_min
                         
                 annotation = {
-                    'segmentation': pts.flatten().tolist(),
+                    'segmentation': [pts.flatten().tolist()],
                     'iscrowd': 0,
                     'image_id': img_id,
                     'bbox': [pts_min[0], pts_min[1], wh[0], wh[1]],
